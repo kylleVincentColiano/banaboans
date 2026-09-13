@@ -48,6 +48,15 @@ img { max-width: 100%; display: block; }
 }
 .section-intro { max-width: 670px; margin: 18px 0 0; color: var(--muted); font-size: 1.05rem; line-height: 1.72; }
 
+@media (max-width: 320px) {
+  .page-width { width: min(100% - 16px, 1180px); }
+  .section-space { padding: 40px 0; }
+  .section-heading { font-size: clamp(1.2rem, 5vw, 2rem); line-height: 1.1; }
+  .section-intro { font-size: 0.9rem; line-height: 1.6; margin-top: 12px; }
+  .eyebrow { margin-bottom: 8px; font-size: 0.65rem; gap: 5px; }
+  .eyebrow::before { width: 18px; height: 1.5px; }
+}
+
 a { color: inherit; }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 
@@ -77,6 +86,13 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 .mobile-nav { display: none; padding: 0 0 16px; }
 .mobile-nav.is-open { display: grid; gap: 12px; }
 .mobile-nav a { padding: 8px 0; border-bottom: 1px solid var(--line); }
+
+@media (max-width: 400px) {
+  .nav-wrap { min-height: 64px; gap: 12px; }
+  .brand-name { font-size: 0.95rem; }
+  .mobile-nav a { font-size: 0.85rem; padding: 6px 0; }
+  .menu-button { padding: 6px; }
+}
 
 /* ==========================================================================
    Hero
@@ -151,6 +167,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 @media (max-width: 560px) {
   .facts-grid { grid-template-columns: 1fr; }
   .image-stamp { width: 122px; right: -7px; bottom: -13px; font-size: .9rem; }
+  .fact { padding: 14px; border-radius: 12px; }
+  .fact-label { font-size: 0.65rem; margin-bottom: 4px; }
+  .fact-value { font-size: 0.88rem; }
+}
+@media (max-width: 400px) {
+  .about-layout { gap: 20px; }
+  .ph-about { min-height: 240px; border-radius: 16px; }
+  .image-stamp { width: 100px; right: -5px; bottom: -8px; font-size: 0.8rem; padding: 16px; }
+  .facts-grid { gap: 10px; }
+  .fact { padding: 12px; }
 }
 
 /* ==========================================================================
@@ -170,7 +196,21 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 .activity { display: flex; align-items: center; gap: 7px; margin: 16px 0 0; color: white; font-size: .82rem; font-weight: 700; }
 
 @media (max-width: 880px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .card-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { 
+  .card-grid { grid-template-columns: 1fr; gap: 16px; }
+  .ph-card { height: 180px; }
+  .place-content { padding: 16px; }
+  .place-title { font-size: 1.2rem; margin: 6px 0; }
+  .place-copy { font-size: 0.85rem; line-height: 1.5; }
+}
+@media (max-width: 400px) { 
+  .card-grid { gap: 12px; }
+  .ph-card { height: 150px; }
+  .place-number { font-size: 0.65rem; }
+  .place-title { font-size: 1rem; margin: 4px 0; }
+  .place-copy { font-size: 0.78rem; }
+  .place-content { padding: 12px; }
+}
 
 /* ==========================================================================
    Culture
@@ -192,31 +232,75 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
   .culture-layout { grid-template-columns: 1fr; }
   .ph-culture { height: 320px; }
 }
-@media (max-width: 560px) { .quote-band { padding: 25px; } }
+@media (max-width: 560px) { 
+  .quote-band { padding: 25px; }
+  .quote-band p { margin-left: 0; font-size: clamp(1.2rem, 4vw, 1.5rem); }
+  .culture-layout { gap: 24px; }
+  .culture-points { gap: 12px; margin-top: 20px; }
+  .culture-point { gap: 12px; padding: 12px 0; }
+  .point-icon { width: 36px; height: 36px; border-radius: 10px; }
+  .ph-culture { height: 280px; border-radius: 20px; }
+}
+@media (max-width: 400px) { 
+  .quote-band { padding: 18px; margin-top: 30px; border-radius: 16px; }
+  .quote-band p { font-size: clamp(1rem, 3vw, 1.2rem); }
+  .ph-culture { height: 220px; border-radius: 16px; }
+  .point-icon { width: 32px; height: 32px; font-size: 0.8rem; }
+  .point-title { font-size: 0.9rem; margin-bottom: 3px; }
+  .point-copy { font-size: 0.82rem; }
+}
 
 /* ==========================================================================
-   Economy
+   Economy — video + copy, responsive down to small phones.
+   The video sits in an aspect-ratio box so it scales at any width
+   without needing a fixed height per breakpoint.
    ========================================================================== */
 .economy { color: white; background: #183c32; }
 .economy .eyebrow, .economy .section-intro { color: #d9e9dc; }
 .economy .eyebrow::before { background: var(--gold); }
-.economy-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 48px; margin-top: 38px; align-items: center; }
-.economy-copy { color: #d7e6dc; line-height: 1.72; margin: 0; }
-.economy-list { margin: 22px 0 0; padding: 0; list-style: none; display: grid; gap: 13px; }
-.economy-list li { display: flex; gap: 11px; align-items: flex-start; }
-.economy-list .icon { margin-top: 2px; color: var(--gold); }
-
-/* Economy Video Layout */
-#economy-heading ~ .economy-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: start; margin-top: 38px; }
-#economy-heading ~ .economy-grid .ph-economy { border-radius: 16px; overflow: hidden; width: 100%; height: 480px; }
-#economy-heading ~ .economy-grid .ph-economy video { width: 100%; height: 100%; display: block; object-fit: cover; }
-#economy-heading ~ .economy-grid > .reveal { padding: 0; }
-#economy-heading ~ .economy-grid > .reveal .section-heading { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 15px; }
-#economy-heading ~ .economy-grid > .reveal .section-intro { font-size: 0.95rem; margin-bottom: 0; }
-
+ 
+.economy-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+ 
+.ph-economy {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(150deg, #9fc94b 0%, #2f6b44 55%, #0d2e23 100%);
+}
+.ph-economy video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+ 
+.economy-grid .section-heading { font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: .1em; }
+.economy-grid .section-intro { margin-top: .6em; }
+ 
 @media (max-width: 880px) {
-  .economy-grid { grid-template-columns: 1fr; }
-  .ph-economy { height: 320px; }
+  .economy-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media (max-width: 560px) {
+  .economy-grid { gap: 1.5rem; }
+  .ph-economy { border-radius: 16px; }
+  .economy-grid .section-heading { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+  .economy-grid .section-intro { font-size: 0.9rem; }
+}
+@media (max-width: 400px) {
+  .economy-grid { gap: 1.2rem; }
+  .ph-economy { border-radius: 12px; }
+  .economy-grid .section-heading { font-size: 1.2rem; }
+  .economy-grid .section-intro { font-size: 0.85rem; }
+}
+@media (max-width: 320px) {
+  .economy-grid { gap: 1rem; }
+  .economy-grid .section-heading { font-size: 1.05rem; }
 }
 
 /* ==========================================================================
@@ -229,6 +313,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
   font-family: inherit; font-size: .82rem; font-weight: 700; cursor: pointer; transition: .2s ease;
 }
 .filter-button:hover, .filter-button.is-active { border-color: var(--forest); background: var(--forest); color: white; }
+
+@media (max-width: 560px) {
+  .filter-row { gap: 6px; margin: 20px 0 20px; }
+  .filter-button { padding: 7px 12px; font-size: 0.75rem; }
+}
+
+@media (max-width: 400px) {
+  .filter-row { gap: 5px; margin: 16px 0 16px; }
+  .filter-button { padding: 6px 10px; font-size: 0.7rem; border-radius: 20px; }
+}
 .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .news-card { padding: 23px; border: 1px solid #d7e3d8; border-radius: 18px; background: var(--paper); }
 .news-category { color: var(--leaf); font-size: .73rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
@@ -238,7 +332,20 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 .news-empty { text-align: center; color: var(--muted); margin-top: 2rem; }
 
 @media (max-width: 880px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .news-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { 
+  .news-grid { grid-template-columns: 1fr; gap: 14px; }
+  .news-card { padding: 18px; border-radius: 14px; }
+  .news-category { font-size: 0.65rem; }
+  .news-title { font-size: 1.1rem; margin: 10px 0 6px; }
+  .news-copy { font-size: 0.82rem; line-height: 1.5; }
+  .news-date { font-size: 0.72rem; margin-top: 6px; }
+}
+@media (max-width: 400px) { 
+  .news-grid { gap: 10px; }
+  .news-card { padding: 14px; border-radius: 12px; }
+  .news-title { font-size: 0.95rem; margin: 8px 0 4px; }
+  .news-copy { font-size: 0.75rem; }
+}
 
 /* ==========================================================================
    Visit
@@ -255,6 +362,21 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 @media (max-width: 880px) {
   .visit-layout { grid-template-columns: 1fr; }
   .ph-visit { min-height: 300px; }
+}
+@media (max-width: 560px) {
+  .visit-layout { gap: 18px; }
+  .visit-panel { padding: 20px; border-radius: 18px; }
+  .visit-item { padding: 14px 0; }
+  .visit-item h3 { font-size: 1.1rem; margin-bottom: 5px; }
+  .visit-item p { font-size: 0.86rem; }
+  .ph-visit { min-height: 260px; border-radius: 16px; }
+}
+@media (max-width: 400px) {
+  .visit-panel { padding: 16px; border-radius: 14px; }
+  .visit-item { padding: 12px 0; }
+  .visit-item h3 { font-size: 0.95rem; }
+  .visit-item p { font-size: 0.8rem; }
+  .ph-visit { min-height: 200px; }
 }
 
 /* ==========================================================================
@@ -287,6 +409,31 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
   .section-space { padding: 65px 0; }
   .hero { min-height: 82vh; }
   .hero-content { padding: 80px 0 43px; }
+  .section-heading { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+  .section-intro { font-size: 0.95rem; }
+  .about-layout { gap: 24px; }
+  .ph-about { min-height: 280px; }
+  .culture-layout { gap: 24px; }
+  .quote-band p { margin-left: 0; font-size: clamp(1.2rem, 4vw, 1.5rem); }
+  .activity { font-size: 0.75rem; gap: 5px; }
+}
+@media (max-width: 400px) {
+  .page-width { width: min(100% - 20px, 1180px); }
+  .section-space { padding: 50px 0; }
+  .hero-content { padding: 60px 0 35px; }
+  .hero-title { font-size: clamp(1.8rem, 6vw, 3rem); }
+  .hero-text { font-size: clamp(0.9rem, 2.5vw, 1rem); }
+  .section-heading { font-size: clamp(1.3rem, 4vw, 2rem); margin-bottom: 10px; }
+  .eyebrow { margin-bottom: 10px; font-size: 0.7rem; }
+  .action-button { padding: 11px 16px; font-size: 0.85rem; gap: 6px; }
+  .place-content { padding: 16px; }
+  .place-title { font-size: 1.2rem; margin: 6px 0; }
+  .place-copy { font-size: 0.85rem; }
+  .news-card { padding: 16px; }
+  .news-title { font-size: 1.1rem; margin: 10px 0 6px; }
+  .news-copy { font-size: 0.82rem; }
+  .quote-band { padding: 20px; margin-top: 30px; }
+  .filter-button { padding: 8px 12px; font-size: 0.75rem; }
 }
 
 /* ============================================================
@@ -458,9 +605,31 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
   }
 }
 
+@media (max-width: 560px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 2rem 1rem;
+    padding: 3rem 0 2rem;
+  }
+
+  .footer-title {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+  }
+
+  .footer-heading {
+    font-size: 0.78rem;
+  }
+
+  .footer-copy {
+    font-size: 0.88rem;
+  }
+}
+
 @media (max-width: 480px) {
   .footer-main {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2.5rem 0 1.75rem;
   }
 
   .footer-nav {
@@ -475,5 +644,40 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 
   .footer-divider {
     display: none;
+  }
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+  .footer-title {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-eyebrow {
+    font-size: 0.7rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.7rem;
+  }
+
+  .footer-heading {
+    font-size: 0.72rem;
+  }
+
+  .footer-list a {
+    font-size: 0.82rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.7rem;
+    padding: 1rem 0;
   }
 }
